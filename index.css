@@ -4,9 +4,12 @@
     box-sizing: border-box;
 }
 
+:root {
+   --szer-ski: 70vw;
+   --wys-ski: 90vh;
+}
+
 html {
-    --szer-ski: 70vw;
-    --wys-ski: 90vh;
     font-family: Verdana, Arial, sans-serif;
 }
 
@@ -23,19 +26,31 @@ body {
     background-color: #aaa;
 }
 
+.podp_snd {
+    display:block; 
+    width:13%;
+    text-align:start;
+    margin-left:49%;
+    font-size: 150%;
+    line-height: 200%;
+    margin-bottom: 2vh;
+    background-color: red;
+}
+
 .klawisze {
     display: block;
     text-align: center;
     padding: 20px 0;
 }
- .klawisze p {
-     font-size: 150%;
- }
+
+.klawisze p {
+    font-size: 150%;
+}
 
 .klawisze ul {
     list-style-type: none;
     line-height: 250%;
-    padding-top:10px;
+    padding-top: 10px;
 }
 
 .klawisze ul li {
@@ -52,7 +67,7 @@ body {
 
 .start a {
     display: block;
-    width:50%;
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
     text-decoration: none;
@@ -71,9 +86,9 @@ body {
 
     .start a:hover {
         background-color: yellowgreen;
-    }    
-      
-  }
+    }
+
+}
 
 
 .start a:active {
@@ -93,5 +108,5 @@ body {
     .klawisze ul li {
         display: block;
     }
-      
-  }
+
+}

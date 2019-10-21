@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>ProfMarcin</title>
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
     <main id="container">
         <section class="klawisze">
@@ -35,16 +37,42 @@
             </div>
         </section>
 
+            <div class="podp_snd">
+                <div>
+                    <input id="cbPodp" type="checkbox">&nbsp;z podpowiedzią
+                </div>
+                <div>
+                    <input id="cbSnd"  type="checkbox" checked>&nbsp;z dźwiękiem
+                </div>
+                <div>
+                    <input id="cbNagr" type="checkbox" checked>&nbsp;z nagrodą
+                </div>
+            </div>
+
         <section class="start">
             <a href="plansza.html" onclick="przejmijParametry()">Startuj</a>
         </section>
 
     </main>
 
-    <script type="text/javascript">// <![CDATA[
-        var _gaq = _gaq || []; _gaq.push(['_setAccount', 'UA-20680235-2']); _gaq.push(['_trackPageview']); (function () { var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true; ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s); })();
-        // ]]></script>
+    <script type="text/javascript">
+        // <![CDATA[
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-20680235-2']);
+        _gaq.push(['_trackPageview']);
+        (function () {
+            var ga = document.createElement('script');
+            ga.type = 'text/javascript';
+            ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') +
+                '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(ga, s);
+        })();
+        // ]]>
+    </script>
 
-    <script src="index.js"></script>    
+    <script src="index.js"></script>
 </body>
+
 </html>
