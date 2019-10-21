@@ -1,8 +1,11 @@
 "use strict";
 
-function przejmijLiczbeKlawiszy() {
+function przejmijParametry() {
+    /*Przekazania parametrow za pomocą localStorage na inną 'formę'/'activity'*/
     var LKL = dajWartoscRadio("klawisze");
-    //Przekazania parametru za pomocą localStorage na inną 'formę'/'activity':
+    // var PODP = ...alert...
+
+
     localStorage.setItem('liczbaKlawiszy',LKL);
 }
 
