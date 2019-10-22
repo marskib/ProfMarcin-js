@@ -27,7 +27,7 @@ div#pctArea {
     border: 1px solid maroon;
 }
 
-div#hintArea{
+div#hintArea {
     position: absolute;
     top: calc(var(--mtop-ski) + var(--bokkw-ski) + 10px);
     left:calc(10% + calc(var(--bokkw-ski) / 3));
@@ -57,4 +57,12 @@ div#btnsArea {
     font-size: 200%;
     line-height: 250%;
     font-weight: bold;
+}
+
+@media (max-width:800px) and (orientation: portrait) {
+
+    div#pctArea, div#btnsArea, div#hintArea {
+        display: none;
+    }
+    
 }
