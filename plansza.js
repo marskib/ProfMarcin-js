@@ -4,6 +4,7 @@ let LKL  = null;
 let PODP = false;
 let sylaby = Array.from(document.querySelectorAll('.sylaba'));
 
+let btn = [];
 
 
 window.onload = pobierzParametry;
@@ -11,18 +12,25 @@ window.onload = pobierzParametry;
 
 
 function pobierzParametry() {
-/* Wyswietlenie sylab na kwadratach; dodanie handlera na kwadraty */    
-
-
-// alert(PODP);
-
     LKL  = localStorage.getItem('liczbaKlawiszy');
     PODP = localStorage.getItem('zPodpowiedzia');
 
-    // sylaby.forEach( function(value,i) {value.innerHTML=i} ); - wzorzec dla parametrow
-    sylaby.forEach((value, i) => { value.innerHTML = '<p>' + PODP + '</p>' });
+    //sylaby.forEach((value, i) => { value.innerHTML = '<p>' + PODP + '</p>' });
 
+    for (var i=0; i<LKL; i++) {
+        btn[i] = utworzKlawisz();
+    }
+    
 }
+
+function utworzKlawisz(){
+    var elem = document.createElement("DIV");
+    elem.classList.add("klawisz");
+    document.getElementById("btnsArea").appendChild(elem);
+    return elem;
+}
+
+
 
 
 
