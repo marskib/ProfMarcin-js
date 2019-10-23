@@ -1,16 +1,16 @@
 "use strict";
 
-let LKL    = null;  //liczba klawiszy
-let btns   = [];    //tablica z klawiszami
-let NROBR  = null;  //numer wylosowanego obrazka
-let pctName= "";    //nazwa wylosowanego obrazka
-let pctArea= null;  //miejsce na planszy (div) na obrazek
-let PODP   = false; //czy z Podpowiedzia
+let LKL = null;     //liczba klawiszy
+let btns = [];      //tablica z klawiszami
+let NROBR = null;   //numer wylosowanego obrazka
+let pctName = "";   //nazwa wylosowanego obrazka
+let pctArea = null; //miejsce na planszy (div) na obrazek
+let PODP = null;   //czy z Podpowiedzia
 
-let wyrazy = ["bluzka","chleb","choinka","cukierki","czajnik","czekolada","dziewczynka","długopis","grzebień","jabłko",
-"klocki","kot","kredki","krzesło","książka","lampa","miotła","miś","myszka","młotek","nożyczki","nóż","odkurzacz","okno",
-"okulary","ołówek","pies","pilot","piłka","poduszka","pomidory","ręcznik","spodnie","słodycze","talerz","widelec","wieża",
-"zebra","zegar","łyżka"];
+let wyrazy = ["bluzka", "chleb", "choinka", "cukierki", "czajnik", "czekolada", "dziewczynka", "długopis", "grzebień", "jabłko",
+    "klocki", "kot", "kredki", "krzesło", "książka", "lampa", "miotła", "miś", "myszka", "młotek", "nożyczki", "nóż", "odkurzacz", "okno",
+    "okulary", "ołówek", "pies", "pilot", "piłka", "poduszka", "pomidory", "ręcznik", "spodnie", "słodycze", "talerz", "widelec", "wieża",
+    "zebra", "zegar", "łyżka"];
 
 //wzorki:
 //let sylaby = Array.from(document.querySelectorAll('.sylaba'));
@@ -22,60 +22,72 @@ window.onload = Inicjacja;//---------------------------//
 //-----------------------------------------------------//
 
 
-function Inicjacja(){
-    pctArea= document.getElementById("pctArea"); //uchwyt do obrazka
+function Inicjacja() {
+    pctArea = document.getElementById("pctArea"); //uchwyt do obrazka
     pobierzParametry();
     ustawObrazek();
+    wyswietlPodpowiedz();
     utworzKlawisze();
     obdzielKlawisze();
 }
 
+function wyswietlPodpowiedz() {
+    if (!PODP) return;
+    document.getElementById("hintArea").innerHTML = "<p>" + pctName + "</p>";
+}
+
 function ustawObrazek() {
-    NROBR   = getRandomIntInclusive(0,wyrazy.length-1);
+    NROBR = getRandomIntInclusive(0, wyrazy.length - 1);
     pctName = wyrazy[NROBR];
-    pctArea.style.backgroundImage = "url(zasoby/"+pctName+".jpg)";
-    // pctArea.style.backgroundColor = "blue";
+    pctArea.style.backgroundImage = "url(zasoby/" + pctName + ".jpg)";
 }
 
 function pobierzParametry() {
-    LKL  = localStorage.getItem('liczbaKlawiszy');
-    PODP = localStorage.getItem('zPodpowiedzia');
+    //Uwaga - wartosci w LocalStorage sa zawsze typu string!!!
+
+    LKL = parseInt(localStorage.liczbaKlawiszy);
+    //mozna tez tak: LKL = localStorage.getItem('liczbaKlawiszy');
+    if (localStorage.getItem('zPodpowiedzia') === "true")
+        PODP = true
+    else
+        PODP = false;
 }
 
 
-function dajNextExercise(){
+function dajNextExercise() {
     likwidujKlawisze();
     ustawObrazek();
-    setTimeout(utworzKlawisze,   800);
+    wyswietlPodpowiedz();
+    setTimeout(utworzKlawisze, 800);
     setTimeout(obdzielKlawisze, 1000);
 }
 
 function utworzKlawisze() {
-//---------------------------------------------------------    
-//Tworzenie klawiszy i wstawianie ich do tablicy btns[]
-//---------------------------------------------------------    
-    for (var i=0; i<LKL; i++) {
+    //---------------------------------------------------------    
+    //Tworzenie klawiszy i wstawianie ich do tablicy btns[]
+    //---------------------------------------------------------    
+    for (var i = 0; i < LKL; i++) {
         btns[i] = dajJedenKlawisz();
     }
 }
 
-function obdzielKlawisze(){
-    btns.forEach(elem=>elem.innerHTML="<p>"+dajWyraz()+"</p>");
+function obdzielKlawisze() {
+    btns.forEach(elem => elem.innerHTML = "<p>" + dajWyraz() + "</p>");
 }
 
-function dajWyraz(){
+function dajWyraz() {
     var len = wyrazy.length;
-    var idx = getRandomIntInclusive(0,len-1);
+    var idx = getRandomIntInclusive(0, len - 1);
     return wyrazy[idx];
 }
 
-function dajJedenKlawisz(){
-//-------------------------------------------------
-//Zwraca (przez return) jeden (1szt.) "gotowy" klawisz:
-//1.Umieszcza go fizycznie na planszy (=tworzy w DOM)
-//2.Ustawia w nim listenera na onclick
-//Klawisz jest gotowy do wstawienia do bts[] (ww funkcja tego nie robi!!)
-//-------------------------------------------------
+function dajJedenKlawisz() {
+    //-------------------------------------------------
+    //Zwraca (przez return) jeden (1szt.) "gotowy" klawisz:
+    //1.Umieszcza go fizycznie na planszy (=tworzy w DOM)
+    //2.Ustawia w nim listenera na onclick
+    //Klawisz jest gotowy do wstawienia do bts[] (ww funkcja tego nie robi!!)
+    //-------------------------------------------------
     var elem = document.createElement("DIV");
     elem.classList.add("klawisz");
     document.getElementById("btnsArea").appendChild(elem);
@@ -83,16 +95,16 @@ function dajJedenKlawisz(){
     return elem;
 }
 
-function likwidujKlawisze(){
-//----------------------------------------------------------------------
-//Usuniecie klawiszy z DOM (=z ekranu) i wyczyszczenie tablicy btns[]
-//----------------------------------------------------------------------    
+function likwidujKlawisze() {
+    //----------------------------------------------------------------------
+    //Usuniecie klawiszy z DOM (=z ekranu) i wyczyszczenie tablicy btns[]
+    //----------------------------------------------------------------------    
     //[...btns].forEach(elem => {elem.style.backgroundColor="red"; elem.innerHTML="<p>krowa</p>"}); to dziala!
     [...btns].forEach(elem => elem.parentNode.removeChild(elem));
     btns.length = 0; //czyszczenie tablicy
 }
 
-function handleKlikOnKlawisz(){
+function handleKlikOnKlawisz() {
     alert("klikniecie klawisza z btnsArea");
 }
 

@@ -44,11 +44,14 @@ div#hintArea {
     left  : var(--left-ski);
     width : var(--bokkw-ski);
     height: 50px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 div#hintArea p {
-    font-weight: bold;
+    /* font-weight: bold; */
+    /* color: lightgrey; */
+    font-size: 150%;
+    color: #cdc6c6;
 }
 
 div#bDalej {
@@ -94,6 +97,13 @@ div#btnsArea {
 
 
 @media (max-width:1024px) {
+
+    .klawisz p {
+        font-size: 120%;
+        line-height: 200%;
+    }
+
+
     div#bDalej {
         height: 70px;
         bottom: 30px;
