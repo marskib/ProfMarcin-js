@@ -26,9 +26,9 @@ function Inicjacja() {
     pctArea = document.getElementById("pctArea"); //uchwyt do obrazka
     pobierzParametry();
     ustawObrazek();
-    wyswietlPodpowiedz();
     utworzKlawisze();
     obdzielKlawisze();
+    wyswietlPodpowiedz();
 }
 
 function wyswietlPodpowiedz() {
@@ -57,9 +57,9 @@ function pobierzParametry() {
 function dajNextExercise() {
     likwidujKlawisze();
     ustawObrazek();
-    wyswietlPodpowiedz();
     setTimeout(utworzKlawisze, 800);
     setTimeout(obdzielKlawisze, 1000);
+    wyswietlPodpowiedz();
 }
 
 function utworzKlawisze() {
