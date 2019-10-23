@@ -1,8 +1,15 @@
 "use strict";
 
-let LKL  = null;  //liczba klawiszy
-let btns = [];    //tablica z klawiszami
-let PODP = false; //czy z Podpowiedzia
+let LKL    = null;  //liczba klawiszy
+let btns   = [];    //tablica z klawiszami
+let NROBR  = null;  //numer wylosowanego obrazka
+let pctName= "";    //nazwa wylosowanego obrazka
+let PODP   = false; //czy z Podpowiedzia
+
+let wyrazy = ["bluzka","chleb","choinka","cukierki","czajnik","czekolada","dziewczynka","długopis","grzebień","jabłko",
+"klocki","kot","kredki","krzesło","książka","lampa","miotła","miś","myszka","młotek","nożyczki","nóż","odkurzacz","okno",
+"okulary","ołówek","pies","pilot","piłka","poduszka","pomidory","ręcznik","spodnie","słodycze","talerz","widelec","wieża",
+"zebra","zegar","łyżka"];
 
 //wzorki:
 //let sylaby = Array.from(document.querySelectorAll('.sylaba'));
@@ -16,9 +23,16 @@ window.onload = Inicjacja;//---------------------------//
 
 function Inicjacja(){
     pobierzParametry();
+    ustawObrazek();
     utworzKlawisze();
+    obdzielKlawisze();
 }
 
+function ustawObrazek() {
+    NROBR   = getRandomIntInclusive(0,wyrazy.length-1);
+    pctName = wyrazy[NROBR];
+    document.getElementById("pctArea").innerText = pctName;
+}
 
 function pobierzParametry() {
     LKL  = localStorage.getItem('liczbaKlawiszy');
@@ -28,7 +42,9 @@ function pobierzParametry() {
 
 function dajNextExercise(){
     likwidujKlawisze();
-    setTimeout(utworzKlawisze, 800);
+    ustawObrazek();
+    setTimeout(utworzKlawisze,   800);
+    setTimeout(obdzielKlawisze, 1000);
 }
 
 function utworzKlawisze() {
@@ -38,6 +54,16 @@ function utworzKlawisze() {
     for (var i=0; i<LKL; i++) {
         btns[i] = dajJedenKlawisz();
     }
+}
+
+function obdzielKlawisze(){
+    btns.forEach(elem=>elem.innerHTML="<p>"+dajWyraz()+"</p>");
+}
+
+function dajWyraz(){
+    var len = wyrazy.length;
+    var idx = getRandomIntInclusive(0,len-1);
+    return wyrazy[idx];
 }
 
 function dajJedenKlawisz(){
@@ -65,6 +91,12 @@ function likwidujKlawisze(){
 
 function handleKlikOnKlawisz(){
     alert("klikniecie klawisza z btnsArea");
+}
+
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 
