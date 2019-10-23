@@ -26,15 +26,16 @@ body {
     background-color: #aaa;
 }
 
-.podp_snd {
+.opcje {
     display:block; 
-    width:25%;
-    text-align:start;
+    width:50%;
     margin-left:49%;
-    font-size: 150%;
+    text-align:start;
+    font-size: 120%;
     line-height: 200%;
     margin-bottom: 2vh;
-    background-color: red;
+    border: 1px solid black;
+    
 }
 
 .klawisze {
@@ -103,10 +104,6 @@ body {
 
     #container {
         margin-top: 20px;
-    }
-
-    .klawisze ul li {
-        display: block;
     }
 
 }

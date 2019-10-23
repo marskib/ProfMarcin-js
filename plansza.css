@@ -9,34 +9,56 @@ html {
 }
 
 :root {
-    --mtop-ski: 1vh;
-    --bokkw-ski: 45vh;
+    --top-ski  : 1vh;   /* odlegl. od top */
+    --bokkw-ski: 45vh;  /* bok kwadratu na obrazek */
+    --left-ski : 10%;   /* odl. kwadratu od lewej  */
+    --right-ski: 10%;   /* odl. obsz. klawiszy od prawej */
 }
 
 body {
     background-color: #fef3dd;
-    position: relative;
+    /* position: relative; */
 }
 
 div#pctArea {
     position: absolute;
-    left: 10%;
-    top: var(--mtop-ski);
-    width: var(--bokkw-ski);
-    height:var(--bokkw-ski);
-    border: 1px solid maroon;
+    left  : var(--left-ski);
+    top   : var(--top-ski);
+    width : var(--bokkw-ski);
+    height: var(--bokkw-ski);
+    border: 1px solid maroon
+
 }
 
 div#hintArea {
-    position: absolute;
-    top: calc(var(--mtop-ski) + var(--bokkw-ski) + 10px);
-    left:calc(10% + calc(var(--bokkw-ski) / 3));
+    position  : absolute;
+    text-align: center;;
+    top: calc(var(--top-ski) + var(--bokkw-ski) + 10px);
+    /* left:calc(10% + calc(var(--bokkw-ski) / 3)); */
+    left  : var(--left-ski);
+    width : var(--bokkw-ski);
+    height: 50px;
+    border: 1px solid black;
 }
+
+div#hintArea p {
+    font-weight: bold;
+}
+
+div#bDalej {
+    position:absolute;
+    left: var(--left-ski);
+    width: var(--bokkw-ski);
+    height: 100px;
+    bottom: 100px;
+    cursor: pointer;
+    background-color: green;
+} 
 
 div#btnsArea {
     position: absolute;
-    right: 10%;
-    top: var(--mtop-ski);
+    right   : var(--right-ski);
+    top: var(--top-ski);
     width: 30vw;
     height: 90vh;
     border: 1px solid maroon;
@@ -48,9 +70,9 @@ div#btnsArea {
     margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
+    background-color: gray;
     cursor: pointer;
     text-align: center;
-    background-color: gray;
 }
 
 .klawisz p {
@@ -58,6 +80,8 @@ div#btnsArea {
     line-height: 250%;
     font-weight: bold;
 }
+
+
 
 @media (max-width:800px) and (orientation: portrait) {
 
