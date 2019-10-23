@@ -26,44 +26,45 @@ body {
     background-color: #aaa;
 }
 
-.opcje {
-    display:block; 
-    width:50%;
-    margin-left:49%;
-    text-align:start;
-    font-size: 120%;
-    line-height: 200%;
-    margin-bottom: 2vh;
-    border: 1px solid black;
-    
-}
-
-.klawisze {
+.liczba-kl {
     display: block;
     text-align: center;
-    padding: 20px 0;
+    /* padding: 20px 0; */
 }
 
-.klawisze p {
+.liczba-kl p {
     font-size: 150%;
 }
 
-.klawisze ul {
+.liczba-kl ul {
     list-style-type: none;
     line-height: 250%;
     padding-top: 10px;
 }
 
-.klawisze ul li {
+.liczba-kl ul li {
     display: inline-block;
     padding: 0 2%;
     font-size: 1.5em;
 }
 
-.klawisze div p {
+.liczba-kl div p {
     font-size: .7em;
     font-weight: 600;
     letter-spacing: 1px;
+}
+
+.opcje {
+    width:0%;
+    white-space: nowrap;
+    margin-left:auto;
+    margin-right:auto;
+
+    text-align: start;
+    font-size: 120%;
+    line-height: 200%;
+    margin-bottom: 2vh;
+    border: 1px solid black;
 }
 
 .start a {
@@ -99,11 +100,16 @@ body {
 @media (max-width: 1024px) {
 
     :root {
+        --szer-ski:90vw;
         --wys-ski: 70vh;
     }
 
     #container {
         margin-top: 20px;
+    }
+
+    .opcje {
+        font-size: 110%;
     }
 
 }

@@ -82,11 +82,32 @@ div#btnsArea {
 }
 
 
+#ostrzezenie {
+    display: none;
+}
+
+
+@media (max-width:1024px) {
+    div#bDalej {
+        height: 70px;
+        bottom: 30px;
+    }
+}
+
+
 
 @media (max-width:800px) and (orientation: portrait) {
 
-    div#pctArea, div#btnsArea, div#hintArea {
+    div#pctArea, div#btnsArea, div#hintArea, div#bDalej {
         display: none;
     }
+
+    #ostrzezenie {
+        display: block;
+        margin-top:20px;
+        text-align: center;
+    font-weight: bold;
+    }
     
-}
+} 
+
