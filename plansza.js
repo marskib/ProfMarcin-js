@@ -4,6 +4,7 @@ let LKL    = null;  //liczba klawiszy
 let btns   = [];    //tablica z klawiszami
 let NROBR  = null;  //numer wylosowanego obrazka
 let pctName= "";    //nazwa wylosowanego obrazka
+let pctArea= null;  //miejsce na planszy (div) na obrazek
 let PODP   = false; //czy z Podpowiedzia
 
 let wyrazy = ["bluzka","chleb","choinka","cukierki","czajnik","czekolada","dziewczynka","długopis","grzebień","jabłko",
@@ -22,6 +23,7 @@ window.onload = Inicjacja;//---------------------------//
 
 
 function Inicjacja(){
+    pctArea= document.getElementById("pctArea"); //uchwyt do obrazka
     pobierzParametry();
     ustawObrazek();
     utworzKlawisze();
@@ -31,7 +33,8 @@ function Inicjacja(){
 function ustawObrazek() {
     NROBR   = getRandomIntInclusive(0,wyrazy.length-1);
     pctName = wyrazy[NROBR];
-    document.getElementById("pctArea").innerText = pctName;
+    pctArea.style.backgroundImage = "url(/zasoby/"+pctName+".jpg)";
+    // pctArea.style.backgroundColor = "blue";
 }
 
 function pobierzParametry() {
