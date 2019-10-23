@@ -33,7 +33,7 @@ function Inicjacja(){
 function ustawObrazek() {
     NROBR   = getRandomIntInclusive(0,wyrazy.length-1);
     pctName = wyrazy[NROBR];
-    pctArea.style.backgroundImage = "url(/zasoby/"+pctName+".jpg)";
+    pctArea.style.backgroundImage = "url(zasoby/"+pctName+".jpg)";
     // pctArea.style.backgroundColor = "blue";
 }
 
