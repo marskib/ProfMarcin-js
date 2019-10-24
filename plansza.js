@@ -1,11 +1,12 @@
 "use strict";
 
-let LKL = null;     //liczba klawiszy
-let btns = [];      //tablica z klawiszami
-let NROBR = null;   //numer wylosowanego obrazka
-let pctName = "";   //nazwa wylosowanego obrazka
-let pctArea = null; //miejsce na planszy (div) na obrazek
-let PODP = null;   //czy z Podpowiedzia
+let LKL = null;      //liczba klawiszy
+let btns = [];       //tablica z klawiszami (referencje only)
+let NROBR = null;    //numer wylosowanego obrazka
+let pctName = "";    //nazwa wylosowanego obrazka
+let pctArea = null;  //miejsce na planszy (div) na obrazek
+let bDalej  = null;  //klawisz bDalej
+let PODP = null;     //czy z Podpowiedzia
 
 let wyrazy = ["bluzka", "chleb", "choinka", "cukierki", "czajnik", "czekolada", "dziewczynka", "długopis", "grzebień", "jabłko",
     "klocki", "kot", "kredki", "krzesło", "książka", "lampa", "miotła", "miś", "myszka", "młotek", "nożyczki", "nóż", "odkurzacz", "okno",
@@ -24,12 +25,16 @@ window.onload = Inicjacja;//---------------------------//
 
 function Inicjacja() {
     pctArea = document.getElementById("pctArea"); //uchwyt do obrazka
+    bDalej  = document.getElementById("bDalej");  //uchwyt do klawisza bDalej
     pobierzParametry();
-    ustawObrazek();
+    NROBR = ustawObrazek();
     utworzKlawisze();
-    obdzielKlawisze();
+    obdzielKlawisze(NROBR);
     wyswietlPodpowiedz();
+    ukryjElement(bDalej);
 }
+
+
 
 function wyswietlPodpowiedz() {
     if (!PODP) return;
@@ -37,9 +42,15 @@ function wyswietlPodpowiedz() {
 }
 
 function ustawObrazek() {
-    NROBR = getRandomIntInclusive(0, wyrazy.length - 1);
-    pctName = wyrazy[NROBR];
+    //---------------------------    
+    //Funckcja z efektem ubocznym ;):
+    //1.Losuje i wyswietla obrazek
+    //2.Zwraca numer wylosowanego obrazka    
+    //---------------------------
+    var numob = getRandomIntInclusive(0, wyrazy.length - 1);
+    pctName = wyrazy[numob];
     pctArea.style.backgroundImage = "url(zasoby/" + pctName + ".jpg)";
+    return numob;
 }
 
 function pobierzParametry() {
@@ -53,13 +64,13 @@ function pobierzParametry() {
         PODP = false;
 }
 
-
 function dajNextExercise() {
     likwidujKlawisze();
-    ustawObrazek();
+    NROBR = ustawObrazek();
     setTimeout(utworzKlawisze, 800);
-    setTimeout(obdzielKlawisze, 1000);
+    setTimeout(obdzielKlawisze, 900, NROBR);
     wyswietlPodpowiedz();
+    ukryjElement(bDalej);
 }
 
 function utworzKlawisze() {
@@ -67,24 +78,46 @@ function utworzKlawisze() {
     //Tworzenie klawiszy i wstawianie ich do tablicy btns[]
     //---------------------------------------------------------    
     for (var i = 0; i < LKL; i++) {
-        btns[i] = dajJedenKlawisz();
+        btns.push(dajJedenKlawisz()); // btns[i] = dajJedenKlawisz(); mozna tak...
     }
 }
 
-function obdzielKlawisze() {
-    btns.forEach(elem => elem.innerHTML = "<p>" + dajWyraz() + "</p>");
+function obdzielKlawisze(pictMustBe) {
+    //-------------------------------------------------------------- 
+    //Obdzielenie klawiszy nazwami.   
+    //Parametr oznacza Numer obrazka (juz) wylosowanego (=wyswietlanego).
+    //Nazwa tego obrazka MUSi znalezc sie na jednym z klawiszy(!)
+    //--------------------------------------------------------------    
+    //Losowanie klawisza i przypisanie mu nazwy wylosowanego (=wyswietlanego) obrazka:
+    var kl_wylos = getRandomIntInclusive(0, LKL - 1);
+    var wyr_wysw = wyrazy[pictMustBe]; //wyraz wylosowany (=wyswietlany)
+    btns[kl_wylos].innerHTML = "<p>" + wyr_wysw + "</p>";
+    btns[kl_wylos].style.color = "maroon";
+    //Wszystkie inne klawisze, (za wykatkiem wylosowanego i obsluzonego powyzej), dostaja losowe nazwy:
+    btns.forEach((elem, i) => { if (i !== kl_wylos) { elem.innerHTML = "<p>" + dajWyrazRandom(wyr_wysw) + "</p>" }; });
 }
 
-function dajWyraz() {
+function dajWyrazRandom(notAllowed) {
+    //----------------------------------------------
+    //Daje losowy wyraz; Parametr oznacza wyraz, ktory nie powinien
+    //zostac wylosowany (bo de facto juz jest na jednym z klawiszy)
+    //----------------------------------------------
     var len = wyrazy.length;
-    var idx = getRandomIntInclusive(0, len - 1);
+    var i = 0;
+    do {
+        var idx = getRandomIntInclusive(0, len - 1);
+        //'trick' - zabezpieczenie przed zapetleniem przy malych liczbach wyrazow/obrazkow = wyrazy[];
+        //mozliwe jest jednak uzyskanie takiego samego wyrazu...(im wieksza liczba w warunku, tym pniejsze p-stwo)
+        i++;
+        if (i>10) break; 
+    } while (wyrazy[idx] === notAllowed);
     return wyrazy[idx];
 }
 
 function dajJedenKlawisz() {
     //-------------------------------------------------
-    //Zwraca (przez return) jeden (1szt.) "gotowy" klawisz:
-    //1.Umieszcza go fizycznie na planszy (=tworzy w DOM)
+    //Zwraca (przez return) jeden (1szt.) "gotowy" klawisz (referencje):
+    //1.Umieszcza go Fizycznie na planszy (=tworzy w DOM)
     //2.Ustawia w nim listenera na onclick
     //Klawisz jest gotowy do wstawienia do bts[] (ww funkcja tego nie robi!!)
     //-------------------------------------------------
@@ -104,9 +137,23 @@ function likwidujKlawisze() {
     btns.length = 0; //czyszczenie tablicy
 }
 
-function handleKlikOnKlawisz() {
-    alert("klikniecie klawisza z btnsArea");
+function handleKlikOnKlawisz(event) {
+    var tekst = event.target.innerText;
+    if (tekst===pctName) {
+        // alert("TRAFILES!!!");
+        pokazElement(bDalej);
+    }
 }
+
+function ukryjElement(elem){
+    elem.style.display = "none";
+}
+
+function pokazElement(elem){
+//najprostsza forma, nie sprawdzam jaki byl przedtem, nieelegancko...    
+    elem.style.display = "block"; 
+}
+
 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
