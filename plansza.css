@@ -9,10 +9,14 @@ html {
 }
 
 :root {
-    --top-ski  : 1vh;   /* odlegl. od top */
-    --bokkw-ski: 45vh;  /* bok kwadratu na obrazek */
-    --left-ski : 10%;   /* odl. kwadratu od lewej  */
-    --right-ski: 10%;   /* odl. obsz. klawiszy od prawej */
+    --top-ski: 1vh;
+    /* odlegl. od top */
+    --bokkw-ski: 45vh;
+    /* bok kwadratu na obrazek */
+    --left-ski: 10%;
+    /* odl. kwadratu od lewej  */
+    --right-ski: 10%;
+    /* odl. obsz. klawiszy od prawej */
 }
 
 body {
@@ -22,27 +26,27 @@ body {
 
 div#pctArea {
     position: absolute;
-    left  : var(--left-ski);
-    top   : var(--top-ski);
-    width : var(--bokkw-ski);
+    left: var(--left-ski);
+    top: var(--top-ski);
+    width: var(--bokkw-ski);
     height: var(--bokkw-ski);
-
     /* obrazek: */
     background-repeat: no-repeat;
     background-position: center;
-    background-size: contain; /*cover - ladny kwadrat, ale przycina...*/
+    background-size: contain;
+    /*cover - ladny kwadrat, ale przycina...*/
     /* obrazek - koniec */
-
     /* border: 1px solid maroon */
 }
 
 div#hintArea {
-    position  : absolute;
-    text-align: center;;
+    position: absolute;
+    text-align: center;
+    ;
     top: calc(var(--top-ski) + var(--bokkw-ski) + 10px);
     /* left:calc(10% + calc(var(--bokkw-ski) / 3)); */
-    left  : var(--left-ski);
-    width : var(--bokkw-ski);
+    left: var(--left-ski);
+    width: var(--bokkw-ski);
     height: 50px;
     /* border: 1px solid black; */
 }
@@ -55,18 +59,25 @@ div#hintArea p {
 }
 
 div#bDalej {
-    position:absolute;
+    position: absolute;
     left: var(--left-ski);
     width: var(--bokkw-ski);
-    height: 100px;
-    bottom: 100px;
+    height: 10vh;
+    bottom: 10vh;
     cursor: pointer;
     background-color: green;
-} 
+}
+
+div#bDalej p {
+    line-height: 10vh;
+    font-weight: 900;
+    text-align: center;
+    letter-spacing: -10px;
+}
 
 div#btnsArea {
     position: absolute;
-    right   : var(--right-ski);
+    right: var(--right-ski);
     top: var(--top-ski);
     width: 30vw;
     height: 90vh;
@@ -82,6 +93,9 @@ div#btnsArea {
     background-color: gray;
     cursor: pointer;
     text-align: center;
+
+
+
 }
 
 .klawisz p {
@@ -90,40 +104,25 @@ div#btnsArea {
     font-weight: bold;
 }
 
-
 #ostrzezenie {
     display: none;
 }
 
-
 @media (max-width:1024px) {
-
     .klawisz p {
         font-size: 120%;
         line-height: 200%;
     }
-
-
-    div#bDalej {
-        height: 70px;
-        bottom: 30px;
-    }
 }
 
-
-
 @media (max-width:800px) and (orientation: portrait) {
-
     div#pctArea, div#btnsArea, div#hintArea, div#bDalej {
         display: none;
     }
-
     #ostrzezenie {
         display: block;
-        margin-top:20px;
+        margin-top: 20px;
         text-align: center;
-    font-weight: bold;
+        font-weight: bold;
     }
-    
-} 
-
+}

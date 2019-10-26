@@ -116,7 +116,7 @@ function dajWyrazRandom(notAllowed) {
 
 function dajJedenKlawisz() {
     //-------------------------------------------------
-    //Zwraca (przez return) jeden (1szt.) "gotowy" klawisz (referencje):
+    //Zwraca (przez return) jeden (1szt.) "gotowy" klawisz (referencję):
     //1.Umieszcza go Fizycznie na planszy (=tworzy w DOM)
     //2.Ustawia w nim listenera na onclick
     //Klawisz jest gotowy do wstawienia do bts[] (ww funkcja tego nie robi!!)
