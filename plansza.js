@@ -119,7 +119,6 @@ function obdzielKlawisze(pictMustBe) {
     var kl_wylos = getRandomIntInclusive(0, LKL - 1);
     var wyr_wysw = wyrazy[pictMustBe]; //wyraz wylosowany (=wyswietlany)
     btns[kl_wylos].innerHTML = "<p>" + wyr_wysw + "</p>";
-    //btns[kl_wylos].style.color = "maroon";
     //Wszystkie inne klawisze, (za wykatkiem wylosowanego i obsluzonego powyzej), dostaja losowe nazwy:
     btns.forEach((elem, i) => { if (i !== kl_wylos) { elem.innerHTML = "<p>" + dajWyrazRandom(wyr_wysw) + "</p>" }; });
 }
@@ -181,10 +180,32 @@ function Zwyciestwo() {
     //---------------------------------------
     //Czynnosci po poprawnym odgadnieciu klawisza
     //---------------------------------------
+    wygasBlokujKlawisze();
     pokazNapis();
     pokazbDalej(300);
+}
+
+function wygasBlokujKlawisze() {
+//    btns.forEach((elem, i) => { if (i !== kl_wylos) { elem.innerHTML = "<p>" + dajWyrazRandom(wyr_wysw) + "</p>" }; });
+
+    for(var i=0; i<LKL; i++) {
+        btns[i].onclick = null;
+        btns[i].style.cursor = "auto";
+        var napis = btns[i].innerText;
+        if (napis!==pctName) {
+            btns[i].style.color = "#646464";
+            btns[i].style.fontSize="10px";
+            btns[i].style.fontWeight="normal";
+            btns[i].style.letterSpacing="-1px";
+        }
+
+
+    }
+
 
 }
+
+
 
 function pokazNapis() {
     //--------------------------------

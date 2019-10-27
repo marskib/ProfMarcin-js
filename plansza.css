@@ -45,19 +45,26 @@ div#hintArea {
     text-align: center;
     top: calc(var(--top-ski) + var(--bokkw-ski) + 1px);
     /* left:calc(10% + calc(var(--bokkw-ski) / 3)); */
-    left: var(--left-ski);
-    width: var(--bokkw-ski);
+    left: calc(var(--left-ski) - 40px);
+    width: calc(var(--bokkw-ski) + 80px);
     height: 50px;
     color: #cdc6c6;
     font-size: 150%;
+
+    /* border: 1px solid black; */
 }
 
 
 
 div#bDalej {
     position: absolute;
+/*     
     left: var(--left-ski);
     width: var(--bokkw-ski);
+     */
+     left: calc(var(--left-ski) - 40px);
+     width: calc(var(--bokkw-ski) + 80px);
+
     height: 16vh;
     bottom: 4vh;
     /* bottom: 10vh; */
@@ -93,12 +100,12 @@ div#btnsArea {
     background-color: gray;
     cursor: pointer;
     text-align: center;
+    font-weight: bold;
 }
 
 .klawisz p {
     font-size: 200%;
     line-height: 12vh;
-    font-weight: bold;
 }
 
 #ostrzezenie {
@@ -112,7 +119,7 @@ div#btnsArea {
     }
 
     div#bDalej {
-        bottom: 1vw;
+        bottom: 0.5vw;
         height: 18vh;
         line-height: 18vh;
     }
