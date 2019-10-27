@@ -37,6 +37,7 @@ div#pctArea {
     /*cover - ladny kwadrat, ale przycina...*/
     /* obrazek - koniec */
     transition: .2s;
+    background-color: black;
 }
 
 div#hintArea {
@@ -51,9 +52,7 @@ div#hintArea {
     font-size: 150%;
 }
 
-/* 
-div#hintArea p {
-} */
+
 
 div#bDalej {
     position: absolute;
