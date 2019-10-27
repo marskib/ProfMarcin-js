@@ -110,6 +110,10 @@ div#btnsArea {
         font-size: 130%;
         letter-spacing: 1px;
     }
+
+    div#bDalej {
+        bottom: 10vw;
+    }
 }
 
 @media (max-width:800px) and (orientation: portrait) {
