@@ -37,13 +37,13 @@ div#pctArea {
     /*cover - ladny kwadrat, ale przycina...*/
     /* obrazek - koniec */
     transition: .2s;
-    background-color: black;
+    background-color: red;
 }
 
 div#hintArea {
     position: absolute;
     text-align: center;
-    top: calc(var(--top-ski) + var(--bokkw-ski) + 10px);
+    top: calc(var(--top-ski) + var(--bokkw-ski) + 1px);
     /* left:calc(10% + calc(var(--bokkw-ski) / 3)); */
     left: var(--left-ski);
     width: var(--bokkw-ski);
@@ -58,8 +58,8 @@ div#bDalej {
     position: absolute;
     left: var(--left-ski);
     width: var(--bokkw-ski);
-    height: 15vh;
-    bottom: 5vh;
+    height: 16vh;
+    bottom: 4vh;
     /* bottom: 10vh; */
     cursor: pointer;
     background-color: transparent;
@@ -113,6 +113,8 @@ div#btnsArea {
 
     div#bDalej {
         bottom: 1vw;
+        height: 18vh;
+        line-height: 18vh;
     }
 }
 
