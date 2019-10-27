@@ -36,27 +36,24 @@ div#pctArea {
     background-size: contain;
     /*cover - ladny kwadrat, ale przycina...*/
     /* obrazek - koniec */
-    /* border: 1px solid maroon */
+    transition: .2s;
 }
 
 div#hintArea {
     position: absolute;
     text-align: center;
-    ;
     top: calc(var(--top-ski) + var(--bokkw-ski) + 10px);
     /* left:calc(10% + calc(var(--bokkw-ski) / 3)); */
     left: var(--left-ski);
     width: var(--bokkw-ski);
     height: 50px;
-    /* border: 1px solid black; */
+    color: #cdc6c6;
+    font-size: 150%;
 }
 
+/* 
 div#hintArea p {
-    /* font-weight: bold; */
-    /* color: lightgrey; */
-    font-size: 150%;
-    color: #cdc6c6;
-}
+} */
 
 div#bDalej {
     position: absolute;
@@ -65,8 +62,11 @@ div#bDalej {
     height: 15vh;
     bottom: 10vh;
     cursor: pointer;
-    background-color: green;
+    background-color: transparent;
+    color: transparent;
+    transition: 0.3s;
 }
+
 
 div#bDalej p {
     line-height: 15vh;
