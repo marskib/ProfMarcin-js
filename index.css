@@ -5,8 +5,8 @@
 }
 
 :root {
-   --szer-ski: 70vw;
-   --wys-ski: 90vh;
+    --szer-ski: 70vw;
+    --wys-ski: 90vh;
 }
 
 html {
@@ -58,13 +58,13 @@ body {
     width: 0%;
     white-space: nowrap;
     margin-left: auto;
-    margin-right:auto;
+    margin-right: auto;
 
     text-align: start;
     font-size: 120%;
     line-height: 200%;
     margin-bottom: 2vh;
-    border: 1px solid black;
+    border: 1px solid blue;
 }
 
 .start a {
@@ -100,7 +100,7 @@ body {
 @media (max-width: 1024px) {
 
     :root {
-        --szer-ski:90vw;
+        --szer-ski: 90vw;
         --wys-ski: 70vh;
     }
 
@@ -112,4 +112,26 @@ body {
         font-size: 110%;
     }
 
+}
+
+
+
+
+/* zeby na malych, horyzontalnych dalo sie zmiescic: */
+@media (max-width:880px) and (orientation: landscape) {
+
+    .opcje {
+        width: auto;
+        text-align: center;
+    }
+
+    .opcje div {
+        display: inline-block;
+    }
+
+    .opcje div:nth-child(2) {
+        margin-right: 20px;
+        margin-left: 20px;
+        background-color: yellow;
+    }
 }
