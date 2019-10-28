@@ -1,23 +1,26 @@
 "use strict";
 
-let LKL = null;      //liczba klawiszy
-let btns = [];       //tablica z klawiszami (referencje only)
-let NROBR = null;    //numer wylosowanego obrazka
-let pctName = "";    //nazwa wylosowanego obrazka
-let pctArea = null;  //miejsce na planszy (div) na obrazek
+let LKL = null; //liczba klawiszy
+let btns = []; //tablica z klawiszami (referencje only)
+let NROBR = null; //numer wylosowanego obrazka
+let pctName = ""; //nazwa wylosowanego obrazka
+let pctArea = null; //miejsce na planszy (div) na obrazek
 let hintArea = null; //obszar na podpowiedz i/lub duzą nazwę obrazka (po Zwyciestwie)
 //inicjalne wartosci obszaru podpowiedzi/duzej nazwy obrazka:
 let hAColorInit = "";
 let hAFSizeInit = "";
+//Stala wartosc box-shadow dla klawisza bDalej:
+const bDalejBS = "4px 4px darkgreen";
 //
-let bDalej = null;  //klawisz bDalej
-let PODP = null;  //czy z Podpowiedzia
+let bDalej = null; //klawisz bDalej
+let PODP = null; //czy z Podpowiedzia
 const PCT_DELAY = 1000; //opoznienie w pokazywaniu obrazka
 
 let wyrazy = ["bluzka", "chleb", "choinka", "cukierki", "czajnik", "czekolada", "dziewczynka", "długopis", "grzebień", "jabłko",
     "klocki", "kot", "kredki", "krzesło", "książka", "lampa", "miotła", "miś", "myszka", "młotek", "nożyczki", "nóż", "odkurzacz", "okno",
     "okulary", "ołówek", "pies", "pilot", "piłka", "poduszka", "pomidory", "ręcznik", "spodnie", "słodycze", "talerz", "widelec", "wieża",
-    "zebra", "zegar", "łyżka"];
+    "zebra", "zegar", "łyżka"
+];
 
 //wzorki:
 //let sylaby = Array.from(document.querySelectorAll('.sylaba'));
@@ -25,14 +28,14 @@ let wyrazy = ["bluzka", "chleb", "choinka", "cukierki", "czajnik", "czekolada", 
 
 
 //-----------------------------------------------------//
-window.onload = Inicjacja;//---------------------------//
+window.onload = Inicjacja; //---------------------------//
 //-----------------------------------------------------//
 
 
 function Inicjacja() {
     pctArea = document.getElementById("pctArea"); //uchwyt do obrazka
-    bDalej = document.getElementById("bDalej");  //uchwyt do klawisza bDalej
-    hintArea = document.getElementById("hintArea");//uchwyt do hintArea
+    bDalej = document.getElementById("bDalej"); //uchwyt do klawisza bDalej
+    hintArea = document.getElementById("hintArea"); //uchwyt do hintArea
     //inicjalne wartosci obszaru podpowiedzi/duzej nazwy:
     var robStyle = getComputedStyle(hintArea);
     hAColorInit = robStyle.color;
@@ -120,7 +123,11 @@ function obdzielKlawisze(pictMustBe) {
     var wyr_wysw = wyrazy[pictMustBe]; //wyraz wylosowany (=wyswietlany)
     btns[kl_wylos].innerHTML = "<p>" + wyr_wysw + "</p>";
     //Wszystkie inne klawisze, (za wykatkiem wylosowanego i obsluzonego powyzej), dostaja losowe nazwy:
-    btns.forEach((elem, i) => { if (i !== kl_wylos) { elem.innerHTML = "<p>" + dajWyrazRandom(wyr_wysw) + "</p>" }; });
+    btns.forEach((elem, i) => {
+        if (i !== kl_wylos) {
+            elem.innerHTML = "<p>" + dajWyrazRandom(wyr_wysw) + "</p>"
+        };
+    });
 }
 
 function dajWyrazRandom(notAllowed) {
@@ -170,12 +177,6 @@ function handleKlikOnKlawisz(event) {
     }
 }
 
-function ukryjbDalej() {
-    bDalej.style.backgroundColor = "transparent";
-    bDalej.style.color = "transparent";
-}
-
-
 function Zwyciestwo() {
     //---------------------------------------
     //Czynnosci po poprawnym odgadnieciu klawisza
@@ -186,23 +187,24 @@ function Zwyciestwo() {
 }
 
 function wygasBlokujKlawisze() {
-//    btns.forEach((elem, i) => { if (i !== kl_wylos) { elem.innerHTML = "<p>" + dajWyrazRandom(wyr_wysw) + "</p>" }; });
+    //--------------------------------------------------------------------    
+    //Efekt "dydaktyczny" :
+    //1.Zdejmuje onclick
+    //2.pomniejsza i wyszarza niewlasciwe napisy; 'zdejmuje' kursor
+    //3.wlasciwy napis(y) pozostawia
+    //--------------------------------------------------------------------    
 
-    for(var i=0; i<LKL; i++) {
+    for (var i = 0; i < LKL; i++) {
         btns[i].onclick = null;
         btns[i].style.cursor = "auto";
         var napis = btns[i].innerText;
-        if (napis!==pctName) {
-            btns[i].style.color = "#646464";
-            btns[i].style.fontSize="10px";
-            btns[i].style.fontWeight="normal";
-            btns[i].style.letterSpacing="-1px";
+        if (napis !== pctName) {
+            btns[i].style.color = "#646464"; //wyszarzenie
+            btns[i].style.fontSize = "10px";
+            btns[i].style.fontWeight = "normal";
+            btns[i].style.letterSpacing = "-1px"; //dobry efekt na mobilnych
         }
-
-
     }
-
-
 }
 
 
@@ -221,10 +223,25 @@ function pokazNapis() {
         hintArea.style.fontSize = 2.0 * fsString + "px";
 }
 
+function ukryjbDalej() {
+    bDalej.onclick = null;
+    bDalej.style.cursor = "auto";
+    bDalej.style.backgroundColor = "transparent";
+    bDalej.style.color = "transparent";
+
+    bDalej.style.boxShadow = "none";
+
+}
+
 function pokazbDalej(delay) {
     setTimeout(() => {
+        bDalej.onclick = dajNextExercise;
+        bDalej.style.cursor = "pointer";
         bDalej.style.backgroundColor = "green";
         bDalej.style.color = "black";
+
+        bDalej.style.boxShadow = bDalejBS;
+
     }, delay);
 }
 
@@ -235,9 +252,3 @@ function getRandomIntInclusive(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-
-
-
-
-

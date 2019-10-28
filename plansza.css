@@ -37,7 +37,6 @@ div#pctArea {
     /*cover - ladny kwadrat, ale przycina...*/
     /* obrazek - koniec */
     transition: .2s;
-    background-color: red;
 }
 
 div#hintArea {
@@ -50,24 +49,17 @@ div#hintArea {
     height: 50px;
     color: #cdc6c6;
     font-size: 150%;
-
-    /* border: 1px solid black; */
 }
 
 
 
 div#bDalej {
     position: absolute;
-/*     
-    left: var(--left-ski);
-    width: var(--bokkw-ski);
-     */
-     left: calc(var(--left-ski) - 40px);
-     width: calc(var(--bokkw-ski) + 80px);
-
+    left: calc(var(--left-ski) - 40px);
+    width: calc(var(--bokkw-ski) + 80px);
     height: 16vh;
     bottom: 4vh;
-    /* bottom: 10vh; */
+    border-radius: 2px;
     cursor: pointer;
     background-color: transparent;
     color: transparent;
@@ -76,7 +68,7 @@ div#bDalej {
 
 
 div#bDalej p {
-    line-height: 15vh;
+    line-height: 16vh;
     font-weight: 900;
     text-align: center;
     letter-spacing: -10px;
@@ -126,9 +118,14 @@ div#btnsArea {
 }
 
 @media (max-width:800px) and (orientation: portrait) {
-    div#pctArea, div#btnsArea, div#hintArea, div#bDalej {
+
+    div#pctArea,
+    div#btnsArea,
+    div#hintArea,
+    div#bDalej {
         display: none;
     }
+
     #ostrzezenie {
         display: block;
         margin-top: 20px;
