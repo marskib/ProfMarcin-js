@@ -21,7 +21,6 @@ html {
 
 body {
     background-color: #fef3dd;
-    /* position: relative; */
 }
 
 div#pctArea {
@@ -52,7 +51,6 @@ div#hintArea {
 }
 
 
-
 div#bDalej {
     position: absolute;
     left: calc(var(--left-ski) - 40px);
@@ -69,9 +67,8 @@ div#bDalej {
 
 div#bDalej p {
     line-height: 16vh;
-    font-weight: 900;
     text-align: center;
-    letter-spacing: -10px;
+    font-size: 500%;
 }
 
 div#btnsArea {
@@ -79,8 +76,6 @@ div#btnsArea {
     right: var(--right-ski);
     top: var(--top-ski);
     width: 35vw;
-    /* height: 90vh; */
-    /* border: 1px solid maroon; */
 }
 
 .klawisz {
@@ -114,6 +109,10 @@ div#btnsArea {
         bottom: 0.5vw;
         height: 18vh;
         line-height: 18vh;
+    }
+
+    div#bDalej p {
+        font-size: 300%;
     }
 }
 
