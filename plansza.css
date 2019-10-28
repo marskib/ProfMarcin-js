@@ -85,10 +85,42 @@ div#btnsArea {
     margin-left: auto;
     margin-right: auto;
     background-color: gray;
+    border-radius: 3px;
     cursor: pointer;
     text-align: center;
     font-weight: bold;
 }
+
+
+/* ponizej od: https://fvsch.com/styling-buttons/   --- dobre!, ale zaklada, ze mamy do czynienia z BUTTONAMI, nie z div'ami */
+/* na razie nie używam... */
+
+.btn {
+    /* default for <button>, but useful for <a> */
+    display: block;
+
+
+    text-align: center;
+    text-decoration: none;
+  
+    /* create a small space when buttons wrap on 2 lines */
+    margin: 5% 0;
+  
+    /* invisible border (will be colored on hover/focus) */
+    border: solid 1px transparent;
+    border-radius: 4px;
+  
+    /* size comes from text & padding (no width/height) */
+    padding: 1.5em 1em;
+  
+    /* make sure colors have enough contrast! */
+    color: #ffffff;
+    background-color: #9555af;
+  }
+
+
+
+
 
 .klawisz p {
     font-size: 200%;

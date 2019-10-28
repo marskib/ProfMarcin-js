@@ -154,11 +154,23 @@ function dajJedenKlawisz() {
     //2.Ustawia w nim listenera na onclick
     //Klawisz jest gotowy do wstawienia do bts[] (ww funkcja tego nie robi!!)
     //-------------------------------------------------
+   
+    /*wersja z div-ami:*/
     var elem = document.createElement("DIV");
     elem.classList.add("klawisz");
     document.getElementById("btnsArea").appendChild(elem);
     elem.onclick = handleKlikOnKlawisz;
     return elem;
+
+   //wersja z buttonami:
+   /*
+    var elem = document.createElement("btn");
+    elem.classList.add("btn");
+    document.getElementById("btnsArea").appendChild(elem);
+    elem.onclick = handleKlikOnKlawisz;
+    return elem;
+  */  
+
 }
 
 function likwidujKlawisze() {
@@ -213,16 +225,13 @@ function pokazNapis() {
     //--------------------------------
     //Pod obrazkiem, w miejscu podpowiedzi (if any), pokazuje sie duzy napis.
     //--------------------------------
-    hintArea.innerHTML = "<p>" + pctName + "</p>";
+    // hintArea.innerHTML = "<p>" + pctName + "</p>";
+    hintArea.innerHTML = "<p>" + "dziewczynka" + "</p>";
     hintArea.style.color = "maroon";
     var fsString = hAFSizeInit.substr(0, 2);
-
-    // if (pctName.length > 7)
-    //     hintArea.style.fontSize = 1.5 * fsString + "px";
-    // else
-    //     hintArea.style.fontSize = 2.0 * fsString + "px";
-
     hintArea.style.fontSize = 1.5 * fsString + "px";
+
+    hintArea.style.fontWeight = "900";
 }
 
 function ukryjbDalej() {
