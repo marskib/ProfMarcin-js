@@ -217,10 +217,12 @@ function pokazNapis() {
     hintArea.style.color = "maroon";
     var fsString = hAFSizeInit.substr(0, 2);
 
-    if (pctName.length > 7)
-        hintArea.style.fontSize = 1.5 * fsString + "px";
-    else
-        hintArea.style.fontSize = 2.0 * fsString + "px";
+    // if (pctName.length > 7)
+    //     hintArea.style.fontSize = 1.5 * fsString + "px";
+    // else
+    //     hintArea.style.fontSize = 2.0 * fsString + "px";
+
+    hintArea.style.fontSize = 1.5 * fsString + "px";
 }
 
 function ukryjbDalej() {
