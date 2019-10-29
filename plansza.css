@@ -17,6 +17,8 @@ html {
     /* odl. kwadratu od lewej  */
     --right-ski: 10%;
     /* odl. obsz. klawiszy od prawej */
+    --hkl-ski: 12vh;
+    /* wysokosc klawiszy z wyrazami*/
 }
 
 body {
@@ -43,7 +45,7 @@ div#hintArea {
     text-align: center;
     top: calc(var(--top-ski) + var(--bokkw-ski) + 1px);
     /* left:calc(10% + calc(var(--bokkw-ski) / 3)); */
-    left: calc(var(--left-ski) - 40px);
+    left:  calc(var(--left-ski) - 40px);
     width: calc(var(--bokkw-ski) + 80px);
     height: 50px;
     color: #cdc6c6;
@@ -74,13 +76,13 @@ div#bDalej p {
 div#btnsArea {
     position: absolute;
     right: var(--right-ski);
-    top: var(--top-ski);
+    top:   var(--top-ski);
     width: 35vw;
 }
 
 .klawisz {
     width: 90%;
-    height: 12vh;
+    height: var(--hkl-ski);
     margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
@@ -92,39 +94,9 @@ div#btnsArea {
 }
 
 
-/* ponizej od: https://fvsch.com/styling-buttons/   --- dobre!, ale zaklada, ze mamy do czynienia z BUTTONAMI, nie z div'ami */
-/* na razie nie używam... */
-
-.btn {
-    /* default for <button>, but useful for <a> */
-    display: block;
-
-
-    text-align: center;
-    text-decoration: none;
-  
-    /* create a small space when buttons wrap on 2 lines */
-    margin: 5% 0;
-  
-    /* invisible border (will be colored on hover/focus) */
-    border: solid 1px transparent;
-    border-radius: 4px;
-  
-    /* size comes from text & padding (no width/height) */
-    padding: 1.5em 1em;
-  
-    /* make sure colors have enough contrast! */
-    color: #ffffff;
-    background-color: #9555af;
-  }
-
-
-
-
-
 .klawisz p {
     font-size: 200%;
-    line-height: 12vh;
+    line-height: var(--hkl-ski);
 }
 
 #ostrzezenie {
@@ -164,3 +136,47 @@ div#btnsArea {
         font-weight: bold;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ponizej od: https://fvsch.com/styling-buttons/   --- dobre!, ale zaklada, ze mamy do czynienia z BUTTONAMI, nie z div'ami */
+/* na razie nie używam... */
+
+.btn {
+    /* default for <button>, but useful for <a> */
+    display: block;
+
+
+    text-align: center;
+    text-decoration: none;
+  
+    /* create a small space when buttons wrap on 2 lines */
+    margin: 5% 0;
+  
+    /* invisible border (will be colored on hover/focus) */
+    border: solid 1px transparent;
+    border-radius: 4px;
+  
+    /* size comes from text & padding (no width/height) */
+    padding: 1.5em 1em;
+  
+    /* make sure colors have enough contrast! */
+    color: #ffffff;
+    background-color: #9555af;
+  }
+
+

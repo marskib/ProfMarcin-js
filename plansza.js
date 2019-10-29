@@ -1,6 +1,8 @@
 "use strict";
 
 let LKL = null; //liczba klawiszy
+let PODP = null; //czy z Podpowiedzia
+let PCT = null; //czy z obrazkami
 let btns = []; //tablica z klawiszami (referencje only)
 let NROBR = null; //numer wylosowanego obrazka
 let pctName = ""; //nazwa wylosowanego obrazka
@@ -9,11 +11,8 @@ let hintArea = null; //obszar na podpowiedz i/lub duzą nazwę obrazka (po Zwyci
 //inicjalne wartosci obszaru podpowiedzi/duzej nazwy obrazka:
 let hAColorInit = "";
 let hAFSizeInit = "";
-//Stala wartosc box-shadow dla klawisza bDalej:
-const bDalejBS = "4px 4px darkgreen";
 //
 let bDalej = null; //klawisz bDalej
-let PODP = null; //czy z Podpowiedzia
 const PCT_DELAY = 1000; //opoznienie w pokazywaniu obrazka
 
 let wyrazy = ["bluzka", "chleb", "choinka", "cukierki", "czajnik", "czekolada", "dziewczynka", "długopis", "grzebień", "jabłko",
@@ -40,6 +39,8 @@ function Inicjacja() {
     var robStyle = getComputedStyle(hintArea);
     hAColorInit = robStyle.color;
     hAFSizeInit = robStyle.fontSize;
+    //Pobranie zdefiniowanej w :root css wysokosci klawisz - bedzie dostosowywana - zostawiam na wzor:
+    //let hKL = getComputedStyle(document.documentElement).getPropertyValue("--hkl-ski");
     //
     pobierzParametry();
     NROBR = ustawObrazek();
@@ -78,12 +79,17 @@ function ustawObrazek() {
     var numob = getRandomIntInclusive(0, wyrazy.length - 1);
     pctName = wyrazy[numob];
     //Pokazanie po lekkim opoznieniu (efekciarstwo):
-    setTimeout(() => (pctArea.style.backgroundImage = "url(zasoby/" + pctName + ".jpg)"), PCT_DELAY);
+    if (PCT)
+        setTimeout(() => (pctArea.style.backgroundImage = "url(zasoby/" + pctName + ".jpg)"), PCT_DELAY);
+
     return numob;
 }
 
 function pobierzParametry() {
+    //--------------------------------------------------
+    //Pobranie parametrow z index.html
     //Uwaga - wartosci w LocalStorage sa zawsze typu string!!!
+    //--------------------------------------------------
 
     LKL = parseInt(localStorage.liczbaKlawiszy);
     //mozna tez tak: LKL = localStorage.getItem('liczbaKlawiszy');
@@ -91,6 +97,8 @@ function pobierzParametry() {
         PODP = true
     else
         PODP = false;
+    //    
+    PCT = (localStorage.getItem('zObrazkami') === "true")
 }
 
 function dajNextExercise() {
@@ -109,6 +117,11 @@ function utworzKlawisze() {
     //---------------------------------------------------------    
     for (var i = 0; i < LKL; i++) {
         btns.push(dajJedenKlawisz()); // btns[i] = dajJedenKlawisz(); mozna tak...
+    }
+    //Jak malo klawiszy, to moga byc wyzsze, szczegolnie na mobilkach:
+    if (LKL < 5) {
+        //'posieje' po calym dokumencie:
+        document.documentElement.style.setProperty('--hkl-ski', '18vh');
     }
 }
 
@@ -154,7 +167,7 @@ function dajJedenKlawisz() {
     //2.Ustawia w nim listenera na onclick
     //Klawisz jest gotowy do wstawienia do bts[] (ww funkcja tego nie robi!!)
     //-------------------------------------------------
-   
+
     /*wersja z div-ami:*/
     var elem = document.createElement("DIV");
     elem.classList.add("klawisz");
@@ -162,14 +175,14 @@ function dajJedenKlawisz() {
     elem.onclick = handleKlikOnKlawisz;
     return elem;
 
-   //wersja z buttonami:
-   /*
-    var elem = document.createElement("btn");
-    elem.classList.add("btn");
-    document.getElementById("btnsArea").appendChild(elem);
-    elem.onclick = handleKlikOnKlawisz;
-    return elem;
-  */  
+    //wersja z buttonami:
+    /*
+     var elem = document.createElement("btn");
+     elem.classList.add("btn");
+     document.getElementById("btnsArea").appendChild(elem);
+     elem.onclick = handleKlikOnKlawisz;
+     return elem;
+   */
 
 }
 
@@ -225,13 +238,16 @@ function pokazNapis() {
     //--------------------------------
     //Pod obrazkiem, w miejscu podpowiedzi (if any), pokazuje sie duzy napis.
     //--------------------------------
-    // hintArea.innerHTML = "<p>" + pctName + "</p>";
-    hintArea.innerHTML = "<p>" + "dziewczynka" + "</p>";
+    hintArea.innerHTML = "<p>" + pctName + "</p>";
     hintArea.style.color = "maroon";
     var fsString = hAFSizeInit.substr(0, 2);
-    hintArea.style.fontSize = 1.5 * fsString + "px";
 
-    hintArea.style.fontWeight = "900";
+    //Napis 2 lub 1.5 raza wiekszy od podpowiedzi, w zaleznosci od urządzenia:
+    var x = window.matchMedia("(min-width: 1025px)");
+    if (x.matches)  // If media query matches
+        hintArea.style.fontSize = 2.0 * fsString + "px";
+    else
+        hintArea.style.fontSize = 1.5 * fsString + "px";
 }
 
 function ukryjbDalej() {
@@ -239,9 +255,6 @@ function ukryjbDalej() {
     bDalej.style.cursor = "auto";
     bDalej.style.backgroundColor = "transparent";
     bDalej.style.color = "transparent";
-
-    bDalej.style.boxShadow = "none";
-
 }
 
 function pokazbDalej(delay) {
@@ -250,9 +263,6 @@ function pokazbDalej(delay) {
         bDalej.style.cursor = "pointer";
         bDalej.style.backgroundColor = "green";
         bDalej.style.color = "black";
-
-        bDalej.style.boxShadow = bDalejBS;
-
     }, delay);
 }
 

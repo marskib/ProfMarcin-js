@@ -1,16 +1,17 @@
 "use strict";
 
 function przejmijParametry() {
-    /*Przekazania parametrow za pomocą localStorage na inną 'formę'/'activity'*/
+    //--------------------------------------------------------------------
+    //Przejecie parametrow do localStorage w celu przekazania na inną 'formę'/'activity
+    //--------------------------------------------------------------------
 
-
-    var LKL = dajWartoscRadio("klawisze");
-
-    var PODP  = document.getElementById("cbPodp").checked;
-
+    var LKL  = dajWartoscRadio("klawisze");
+    var PODP = document.getElementById("cbPodp").checked;
+    var PCT  = document.getElementById("cbPct").checked;
 
     localStorage.setItem('liczbaKlawiszy',LKL);
     localStorage.setItem('zPodpowiedzia', PODP);
+    localStorage.setItem('zObrazkami', PCT);
 }
 
 
