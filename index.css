@@ -134,9 +134,13 @@ body {
         background-color: yellow;
     }
 
+    .opcje div:nth-child(3) {
+        margin-right: 20px;
+    }
+
 
     :root {
-        --wys-ski: 70vh;
+        --wys-ski: 72vh;
     }
 
     .start a {
@@ -145,8 +149,6 @@ body {
         line-height: 55px;
         font-size: 1.1em;
 
-
         box-shadow: 20px 20px maroon;
-
     }
 }
