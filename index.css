@@ -136,17 +136,17 @@ body {
 
 
     :root {
-        --wys-ski: 80vh;
+        --wys-ski: 70vh;
     }
 
     .start a {
-        margin-top: 20px;
-        height: 50px;
-        line-height: 50px;
-        font-size: 1em;
+        margin-top: 15px;
+        height: 55px;
+        line-height: 55px;
+        font-size: 1.1em;
 
 
-        box-shadow: 20px 20px yellow;
+        box-shadow: 20px 20px maroon;
 
     }
 }
