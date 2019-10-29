@@ -121,7 +121,11 @@ function utworzKlawisze() {
     //Jak malo klawiszy, to moga byc wyzsze, szczegolnie na mobilkach:
     if (LKL < 5) {
         //'posieje' po calym dokumencie:
-        document.documentElement.style.setProperty('--hkl-ski', '18vh');
+        document.documentElement.style.setProperty('--hkl-ski', '19vh');
+    }
+    if (LKL == 5) {
+        //'posieje' po calym dokumencie:
+        document.documentElement.style.setProperty('--hkl-ski', '17vh');
     }
 }
 
