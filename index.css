@@ -116,7 +116,6 @@ body {
 
 
 
-
 /* zeby na malych, horyzontalnych dalo sie zmiescic: */
 @media (max-width:880px) and (orientation: landscape) {
 
@@ -133,5 +132,21 @@ body {
         margin-right: 20px;
         margin-left: 20px;
         background-color: yellow;
+    }
+
+
+    :root {
+        --wys-ski: 90vh;
+    }
+
+    .start a {
+        margin-top: 60px;
+        height: 70px;
+        line-height: 70px;
+        font-size: 1.2em;
+
+
+        box-shadow: 20px 20px red;
+
     }
 }
