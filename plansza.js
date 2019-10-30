@@ -74,14 +74,14 @@ function ustawObrazek() {
     //2.Zwraca numer wylosowanego obrazka (efekt uboczny, b.wazny!!!)   
     //---------------------------
     //czyszczenie starego (dla efektu)
-    pctArea.style.backgroundImage = "url(zasoby/tlo.jpg)";
+    pctArea.style.backgroundImage = "url(zasoby/tlo.webp)";
     //losowanie obrazka:
     var numob = getRandomIntInclusive(0, wyrazy.length - 1);
     pctName = wyrazy[numob];
     //Pokazanie po lekkim opoznieniu (efekciarstwo):
-    if (PCT)
-        setTimeout(() => (pctArea.style.backgroundImage = "url(zasoby/" + pctName + ".jpg)"), PCT_DELAY);
-
+    if (PCT) {
+        setTimeout(() => (pctArea.style.backgroundImage = "url(zasoby/" + pctName + ".webp)"), PCT_DELAY);
+    }
     return numob;
 }
 
@@ -231,7 +231,7 @@ function wygasBlokujKlawisze() {
             btns[i].style.color = "#646464"; //wyszarzenie
             btns[i].style.fontSize = "10px";
             btns[i].style.fontWeight = "normal";
-            btns[i].style.letterSpacing = "-1px"; //dobry efekt na mobilnych
+            btns[i].style.letterSpacing = "-1px"; //dobry efekt na mobilnych; na stacjonarnych - ok
         }
     }
 }
@@ -247,11 +247,15 @@ function pokazNapis() {
     var fsString = hAFSizeInit.substr(0, 2);
 
     //Napis 2 lub 1.5 raza wiekszy od podpowiedzi, w zaleznosci od urządzenia:
-    var x = window.matchMedia("(min-width: 1025px)");
-    if (x.matches)  // If media query matches
-        hintArea.style.fontSize = 2.0 * fsString + "px";
-    else
+    var x = window.matchMedia("(max-width: 1024px)"); //czy stacjonarne/mobilne
+    if (x.matches)  {    // If media query matches
         hintArea.style.fontSize = 1.5 * fsString + "px";
+        //console.log("mobilka");
+    }
+    else {
+        hintArea.style.fontSize = 2.0 * fsString + "px";
+        //console.log("stacjonarka");
+    }    
 }
 
 function ukryjbDalej() {
