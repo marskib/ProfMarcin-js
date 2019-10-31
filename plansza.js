@@ -78,7 +78,9 @@ function ustawObrazek() {
     //Funckcja z efektem ubocznym ;) :
     //0.Czysci stary obrazek (efekciarstwo)
     //1.Losuje i wyswietla obrazek
-    //2.Zwraca numer wylosowanego obrazka (efekt uboczny, b.wazny!!!)   
+    //2.Odgrywa nazwę obrazka
+    //3.Ustawia onclik na obrazku, tak zeby mozliwe bylo jego JEDNORAZOWE odegranie
+    //4.Zwraca numer wylosowanego obrazka (efekt uboczny, b.wazny!!!)   
     //---------------------------
     //czyszczenie starego (dla efektu)
     pctArea.style.backgroundImage = "url(zasoby/tlo.webp)";
@@ -88,8 +90,11 @@ function ustawObrazek() {
     //Pokazanie po lekkim opoznieniu (efekciarstwo):
     if (PCT) {
         setTimeout(() => (pctArea.style.backgroundImage = "url(zasoby/" + pctName + ".webp)"), PCT_DELAY);
+        //jednorazowy listener i pointer na obrazku:
+        setTimeout(() => (pctArea.style.cursor="pointer"), PCT_DELAY);
+        pctArea.onclick = function() {odegraj(pctName+".ogg",0); pctArea.onclick = null; pctArea.style.cursor = "auto";}
     }
-    odegraj(pctName+".ogg", PCT_DELAY);
+    odegraj(pctName+".ogg", 2 * PCT_DELAY);
     return numob;
 }
 
@@ -213,12 +218,18 @@ function handleKlikOnKlawisz(event) {
     if (tekst === pctName) {
         Zwyciestwo();
     }
+    else {
+      odegraj("zle.mp3",0);
+    }
+
 }
 
 function Zwyciestwo() {
     //---------------------------------------
     //Czynnosci po poprawnym odgadnieciu klawisza
     //---------------------------------------
+    odegraj("ding.mp3",0);
+    odegraj("oklaski.ogg",900);
     wygasBlokujKlawisze();
     pokazNapis();
     pokazbDalej(300);
