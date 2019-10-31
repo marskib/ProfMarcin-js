@@ -8,10 +8,12 @@ function przejmijParametry() {
     var LKL  = dajWartoscRadio("klawisze");
     var PODP = document.getElementById("cbPodp").checked;
     var PCT  = document.getElementById("cbPct").checked;
+    var SND  = document.getElementById("cbSnd").checked;
 
     localStorage.setItem('liczbaKlawiszy',LKL);
     localStorage.setItem('zPodpowiedzia', PODP);
     localStorage.setItem('zObrazkami', PCT);
+    localStorage.setItem('zDzwiekiem', SND);
 }
 
 

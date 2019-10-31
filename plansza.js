@@ -1,8 +1,9 @@
 "use strict";
 
-let LKL = null; //liczba klawiszy
+let LKL = null;  //liczba klawiszy
 let PODP = null; //czy z Podpowiedzia
-let PCT = null; //czy z obrazkami
+let PCT = null;  //czy z obrazkami
+let SND = null;  //czy z dżwiękiem (głosem dla wyrazów)
 let btns = []; //tablica z klawiszami (referencje only)
 let NROBR = null; //numer wylosowanego obrazka
 let pctName = ""; //nazwa wylosowanego obrazka
@@ -13,6 +14,7 @@ let hAColorInit = "";
 let hAFSizeInit = "";
 //
 let bDalej = null; //klawisz bDalej
+let IS_MOBILE = false;   //czy mamy do czynienie z urzadzeniem mobilnym
 const PCT_DELAY = 1000; //opoznienie w pokazywaniu obrazka
 
 let wyrazy = ["bluzka", "chleb", "choinka", "cukierki", "czajnik", "czekolada", "dziewczynka", "długopis", "grzebień", "jabłko",
@@ -32,6 +34,13 @@ window.onload = Inicjacja; //---------------------------//
 
 
 function Inicjacja() {
+    //-------------------------------------------------------------------------------------
+    //Inicjowanie wartosci zmiennych oraz czynnosci poczatkowe przy otwieraniu plansza.html
+    //-------------------------------------------------------------------------------------
+    //czy stacjonarne/mobilne:
+    var x = window.matchMedia("(max-width: 1024px)");
+    IS_MOBILE = (x.matches); // If media query matches
+    //
     pctArea = document.getElementById("pctArea"); //uchwyt do obrazka
     bDalej = document.getElementById("bDalej"); //uchwyt do klawisza bDalej
     hintArea = document.getElementById("hintArea"); //uchwyt do hintArea
@@ -39,8 +48,6 @@ function Inicjacja() {
     var robStyle = getComputedStyle(hintArea);
     hAColorInit = robStyle.color;
     hAFSizeInit = robStyle.fontSize;
-    //Pobranie zdefiniowanej w :root css wysokosci klawisz - bedzie dostosowywana - zostawiam na wzor:
-    //let hKL = getComputedStyle(document.documentElement).getPropertyValue("--hkl-ski");
     //
     pobierzParametry();
     NROBR = ustawObrazek();
@@ -82,6 +89,7 @@ function ustawObrazek() {
     if (PCT) {
         setTimeout(() => (pctArea.style.backgroundImage = "url(zasoby/" + pctName + ".webp)"), PCT_DELAY);
     }
+    odegraj(pctName+".ogg", PCT_DELAY);
     return numob;
 }
 
@@ -99,6 +107,7 @@ function pobierzParametry() {
         PODP = false;
     //    
     PCT = (localStorage.getItem('zObrazkami') === "true")
+    SND = (localStorage.getItem('zDzwiekiem') === "true")
 }
 
 function dajNextExercise() {
@@ -247,15 +256,14 @@ function pokazNapis() {
     var fsString = hAFSizeInit.substr(0, 2);
 
     //Napis 2 lub 1.5 raza wiekszy od podpowiedzi, w zaleznosci od urządzenia:
-    var x = window.matchMedia("(max-width: 1024px)"); //czy stacjonarne/mobilne
-    if (x.matches)  {    // If media query matches
+    if (IS_MOBILE) {
         hintArea.style.fontSize = 1.5 * fsString + "px";
         //console.log("mobilka");
     }
     else {
         hintArea.style.fontSize = 2.0 * fsString + "px";
         //console.log("stacjonarka");
-    }    
+    }
 }
 
 function ukryjbDalej() {
@@ -272,6 +280,12 @@ function pokazbDalej(delay) {
         bDalej.style.backgroundColor = "green";
         bDalej.style.color = "black";
     }, delay);
+}
+
+function odegraj(plik, delay) {
+    if (!SND) return;
+    var plikSnd = new Audio("zasoby/"+plik);
+    setTimeout(() => plikSnd.play(), delay);
 }
 
 
