@@ -2,10 +2,10 @@
 
 let LKL = null;  //liczba klawiszy
 let PODP = null; //czy z Podpowiedzia
-let PCT  = null;  //czy z obrazkami
+let PCT = null;  //czy z obrazkami
 let LEKTOR = null;  //czy z głosem lektora dla nazw obrazkow
 let EFEKTY = null;  //czy z efektami (ding/zle)
-let NAGRODA= null;  //czy z nagrada (oklaski ew. inne w przyszlosci)
+let NAGRODA = null;  //czy z nagrada (oklaski ew. inne w przyszlosci)
 let btns = []; //tablica z klawiszami (referencje only)
 let NROBR = null; //numer wylosowanego obrazka
 let pctName = ""; //nazwa wylosowanego obrazka
@@ -92,11 +92,12 @@ function ustawObrazek() {
     //Pokazanie po lekkim opoznieniu (efekciarstwo):
     if (PCT) {
         setTimeout(() => (pctArea.style.backgroundImage = "url(zasoby/" + pctName + ".webp)"), PCT_DELAY);
+
         //jednorazowy listener i pointer na obrazku:
-        setTimeout(() => (pctArea.style.cursor="pointer"), PCT_DELAY);
-        pctArea.onclick = function() {odegraj(pctName+".ogg",0); pctArea.onclick = null; pctArea.style.cursor = "auto";}
+        setTimeout(() => (pctArea.style.cursor = "pointer"), 2 * PCT_DELAY);
+        pctArea.onclick = function () { odegrajLektor(0); pctArea.onclick = null; pctArea.style.cursor = "auto"; }
     }
-    odegrajLektor(2*PCT_DELAY);
+    odegrajLektor(2 * PCT_DELAY);
     return numob;
 }
 
@@ -113,10 +114,10 @@ function pobierzParametry() {
     else
         PODP = false;
     //    
-    PCT    = (localStorage.getItem('zObrazkami') === "true")
-    LEKTOR = (localStorage.getItem('zLektorem')  === "true")
-    EFEKTY = (localStorage.getItem('zEfektami')  === "true")
-    NAGRODA= (localStorage.getItem('zNagroda')   === "true")
+    PCT = (localStorage.getItem('zObrazkami') === "true")
+    LEKTOR = (localStorage.getItem('zLektorem') === "true")
+    EFEKTY = (localStorage.getItem('zEfektami') === "true")
+    NAGRODA = (localStorage.getItem('zNagroda') === "true")
 }
 
 function dajNextExercise() {
@@ -138,7 +139,7 @@ function utworzKlawisze() {
     }
     //Jak malo klawiszy, to moga byc wyzsze, szczegolnie na mobilkach:
     if (LKL < 5) {
-        //'posieje' po calym dokumencie:
+        //'sieje' po calym dokumencie:
         document.documentElement.style.setProperty('--hkl-ski', '17vh');
     }
     if (LKL == 5) {
@@ -223,7 +224,7 @@ function handleKlikOnKlawisz(event) {
         Zwyciestwo();
     }
     else {
-      odegrajEfekt("zle.mp3",0);
+        odegrajEfekt("zle.mp3", 0);
     }
 
 }
@@ -232,8 +233,8 @@ function Zwyciestwo() {
     //---------------------------------------
     //Czynnosci po poprawnym odgadnieciu klawisza
     //---------------------------------------
-    odegrajEfekt("ding.mp3",0);
-    odegrajNagrode("oklaski.ogg",900);
+    odegrajEfekt("ding.mp3", 0);
+    odegrajNagrode("oklaski.ogg", 900);
     wygasBlokujKlawisze();
     pokazNapis();
     pokazbDalej(300);
@@ -300,22 +301,22 @@ function pokazbDalej(delay) {
 
 function odegrajLektor(delay) {
     if (!LEKTOR) return;
-    odegrajPlik(pctName+".ogg", delay)
+    odegrajPlik(pctName + ".ogg", delay)
 }
 
 
 function odegrajNagrode(plik, delay) {
-    if(!NAGRODA) return;
+    if (!NAGRODA) return;
     odegrajPlik(plik, delay);
 }
 
 function odegrajEfekt(plik, delay) {
-    if(!EFEKTY) return;
+    if (!EFEKTY) return;
     odegrajPlik(plik, delay);
 }
 
 function odegrajPlik(plik, delay) {
-    var plikSnd = new Audio("zasoby/"+plik);
+    var plikSnd = new Audio("zasoby/" + plik);
     setTimeout(() => plikSnd.play(), delay);
 }
 
