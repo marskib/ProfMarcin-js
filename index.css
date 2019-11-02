@@ -64,7 +64,7 @@ body {
     font-size: 120%;
     line-height: 200%;
     margin-bottom: 2vh;
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
 }
 
 .start a {
@@ -104,8 +104,13 @@ body {
         --wys-ski: 70vh;
     }
 
+    
     #container {
         margin-top: 20px;
+    }
+
+    :root {
+        --wys-ski: 95vh;
     }
 
     .opcje {
@@ -131,7 +136,7 @@ body {
     .opcje div:nth-child(2) {
         margin-right: 20px;
         margin-left: 20px;
-        background-color: yellow;
+        /* background-color: yellow; */
     }
 
     .opcje div:nth-child(3) {
@@ -140,15 +145,15 @@ body {
 
 
     :root {
-        --wys-ski: 72vh;
+         --szer-ski: 100vw;
     }
 
     .start a {
-        margin-top: 15px;
+        margin-top: 45px;
         height: 55px;
         line-height: 55px;
         font-size: 1.1em;
 
-        box-shadow: 20px 20px maroon;
+        /* box-shadow: 20px 20px maroon; */
     }
 }

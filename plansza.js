@@ -2,8 +2,10 @@
 
 let LKL = null;  //liczba klawiszy
 let PODP = null; //czy z Podpowiedzia
-let PCT = null;  //czy z obrazkami
-let SND = null;  //czy z dżwiękiem (głosem dla wyrazów)
+let PCT  = null;  //czy z obrazkami
+let LEKTOR = null;  //czy z głosem lektora dla nazw obrazkow
+let EFEKTY = null;  //czy z efektami (ding/zle)
+let NAGRODA= null;  //czy z nagrada (oklaski ew. inne w przyszlosci)
 let btns = []; //tablica z klawiszami (referencje only)
 let NROBR = null; //numer wylosowanego obrazka
 let pctName = ""; //nazwa wylosowanego obrazka
@@ -94,7 +96,7 @@ function ustawObrazek() {
         setTimeout(() => (pctArea.style.cursor="pointer"), PCT_DELAY);
         pctArea.onclick = function() {odegraj(pctName+".ogg",0); pctArea.onclick = null; pctArea.style.cursor = "auto";}
     }
-    odegraj(pctName+".ogg", 2 * PCT_DELAY);
+    odegrajLektor(2*PCT_DELAY);
     return numob;
 }
 
@@ -111,8 +113,10 @@ function pobierzParametry() {
     else
         PODP = false;
     //    
-    PCT = (localStorage.getItem('zObrazkami') === "true")
-    SND = (localStorage.getItem('zDzwiekiem') === "true")
+    PCT    = (localStorage.getItem('zObrazkami') === "true")
+    LEKTOR = (localStorage.getItem('zLektorem')  === "true")
+    EFEKTY = (localStorage.getItem('zEfektami')  === "true")
+    NAGRODA= (localStorage.getItem('zNagroda')   === "true")
 }
 
 function dajNextExercise() {
@@ -219,7 +223,7 @@ function handleKlikOnKlawisz(event) {
         Zwyciestwo();
     }
     else {
-      odegraj("zle.mp3",0);
+      odegrajEfekt("zle.mp3",0);
     }
 
 }
@@ -228,8 +232,8 @@ function Zwyciestwo() {
     //---------------------------------------
     //Czynnosci po poprawnym odgadnieciu klawisza
     //---------------------------------------
-    odegraj("ding.mp3",0);
-    odegraj("oklaski.ogg",900);
+    odegrajEfekt("ding.mp3",0);
+    odegrajNagrode("oklaski.ogg",900);
     wygasBlokujKlawisze();
     pokazNapis();
     pokazbDalej(300);
@@ -293,8 +297,24 @@ function pokazbDalej(delay) {
     }, delay);
 }
 
-function odegraj(plik, delay) {
-    if (!SND) return;
+
+function odegrajLektor(delay) {
+    if (!LEKTOR) return;
+    odegrajPlik(pctName+".ogg", delay)
+}
+
+
+function odegrajNagrode(plik, delay) {
+    if(!NAGRODA) return;
+    odegrajPlik(plik, delay);
+}
+
+function odegrajEfekt(plik, delay) {
+    if(!EFEKTY) return;
+    odegrajPlik(plik, delay);
+}
+
+function odegrajPlik(plik, delay) {
     var plikSnd = new Audio("zasoby/"+plik);
     setTimeout(() => plikSnd.play(), delay);
 }

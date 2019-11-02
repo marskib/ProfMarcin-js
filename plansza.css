@@ -120,6 +120,7 @@ div#btnsArea {
     }
 }
 
+/* Mobilne, pionowo: nie pokazujemy elementow, ostrzezenie i prosba o zmiane orientacji: */
 @media (max-width:800px) and (orientation: portrait) {
 
     div#pctArea,
@@ -135,6 +136,16 @@ div#btnsArea {
         text-align: center;
         font-weight: bold;
     }
+
+    #ostrzezenie p:nth-child(1) {
+        font-size: 110%;
+    }
+
+    #ostrzezenie p:nth-child(3) {
+        font-size: 130%;
+    }
+
+   
 }
 
 
