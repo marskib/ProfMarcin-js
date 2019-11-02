@@ -6,7 +6,8 @@
 
 :root {
     --szer-ski: 70vw;
-    --wys-ski: 80vh;
+    /* --wys-ski: 80vh; */
+    --wys-ski: 70vh;
 }
 
 html {
