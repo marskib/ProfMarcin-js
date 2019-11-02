@@ -6,8 +6,7 @@
 
 :root {
     --szer-ski: 70vw;
-    /* --wys-ski: 80vh; */
-    --wys-ski: 70vh;
+    --wys-ski: 85vh;
 }
 
 html {
@@ -103,7 +102,8 @@ body {
 
     :root {
         --szer-ski: 90vw;
-        --wys-ski: 70vh;
+        /* --wys-ski: 70vh; */
+        --wys-ski: 60vh;
     }
 
     
