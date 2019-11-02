@@ -102,17 +102,13 @@ body {
 
     :root {
         --szer-ski: 90vw;
-        /* --wys-ski: 70vh; */
-        --wys-ski: 60vh;
+        /* --wys-ski: 95vh; */
+        --wys-ski: 85vh;
     }
 
     
     #container {
         margin-top: 20px;
-    }
-
-    :root {
-        --wys-ski: 95vh;
     }
 
     .opcje {
