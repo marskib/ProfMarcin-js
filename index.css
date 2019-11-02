@@ -55,7 +55,8 @@ body {
 }
 
 .opcje {
-    width: 0%;
+    /* width: 0%; */
+    width: 5%;
     white-space: nowrap;
     margin-left: auto;
     margin-right: auto;
@@ -64,7 +65,7 @@ body {
     font-size: 120%;
     line-height: 200%;
     margin-bottom: 2vh;
-    /* border: 1px solid blue; */
+    border: 1px solid blue;
 }
 
 .start a {
