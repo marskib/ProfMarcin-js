@@ -141,10 +141,16 @@ function utworzKlawisze() {
     if (LKL < 5) {
         //'sieje' po calym dokumencie:
         document.documentElement.style.setProperty('--hkl-ski', '17vh');
+        if (!IS_MOBILE) {
+            btns.forEach(e=>e.style.fontSize = "140%");
+        }
     }
     if (LKL == 5) {
         //'posieje' po calym dokumencie:
         document.documentElement.style.setProperty('--hkl-ski', '13vh');
+        if (!IS_MOBILE) {
+            btns.forEach(e=>e.style.fontSize = "120%");
+        }
     }
 }
 
