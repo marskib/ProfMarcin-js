@@ -140,17 +140,19 @@ function utworzKlawisze() {
     //Jak malo klawiszy, to moga byc wyzsze, szczegolnie na mobilkach:
     if (LKL < 5) {
         //'sieje' po calym dokumencie:
-        document.documentElement.style.setProperty('--hkl-ski', '17vh');
-        if (!IS_MOBILE) {
-            btns.forEach(e=>e.style.fontSize = "140%");
-        }
+        document.documentElement.style.setProperty('--hkl-ski', '17vh'); //wyzszy klawisz
+        //mozna wiekszy tekst, bo duzy klawisz... :
+        var newFZ = "140%";
+        if (IS_MOBILE) newFZ = "120%";
+        btns.forEach(e=>e.style.fontSize = newFZ);
     }
     if (LKL == 5) {
         //'posieje' po calym dokumencie:
-        document.documentElement.style.setProperty('--hkl-ski', '13vh');
-        if (!IS_MOBILE) {
-            btns.forEach(e=>e.style.fontSize = "120%");
-        }
+        document.documentElement.style.setProperty('--hkl-ski', '13vh'); //wyzszy klawisz
+        //mozna wiekszy tekst, bo duzy klawisz... :
+        var newFZ = "120%";
+        if (IS_MOBILE) newFZ = "110%";
+        btns.forEach(e=>e.style.fontSize = newFZ);
     }
 }
 
