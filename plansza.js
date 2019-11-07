@@ -17,7 +17,7 @@ let hAFSizeInit = "";
 //
 let bDalej = null; //klawisz bDalej
 let IS_MOBILE = false;   //czy mamy do czynienie z urzadzeniem mobilnym
-const PCT_DELAY = 1000; //opoznienie w pokazywaniu obrazka
+const PCT_DELAY = 1200; //opoznienie w pokazywaniu obrazka
 
 let wyrazy = ["bluzka", "chleb", "choinka", "cukierki", "czajnik", "czekolada", "dziewczynka", "długopis", "grzebień", "jabłko",
     "klocki", "kot", "kredki", "krzesło", "książka", "lampa", "miotła", "miś", "myszka", "młotek", "nożyczki", "nóż", "odkurzacz", "okno",
@@ -314,6 +314,7 @@ function odegrajLektor(delay) {
 
 
 function odegrajNagrode(plik, delay) {
+    
     if (!NAGRODA) return;
     odegrajPlik(plik, delay);
 }
@@ -325,7 +326,8 @@ function odegrajEfekt(plik, delay) {
 
 function odegrajPlik(plik, delay) {
     var plikSnd = new Audio("zasoby/" + plik);
-    setTimeout(() => plikSnd.play(), delay);
+    // setTimeout(() => plikSnd.play(), delay);
+    setTimeout( function() {plikSnd.play();}, delay);
 }
 
 
