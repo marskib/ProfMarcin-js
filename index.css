@@ -90,6 +90,17 @@ div#infoapki {
     margin: 50px 25%;
 }
 
+div#homepage {
+    position: absolute;
+    font-size: 2.5em;
+    left: 7px;
+    bottom: 10px;
+}
+
+div#homepage a {
+    color: gray;
+}
+
 @media (min-width: 1025px) {
 
     .start a:hover {

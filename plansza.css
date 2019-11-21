@@ -99,6 +99,17 @@ div#btnsArea {
     line-height: var(--hkl-ski);
 }
 
+div#homepage {
+    position: absolute;
+    font-size: 2.5em;
+    left: 7px;
+    bottom: 10px;
+}
+
+div#homepage a {
+    color: gray;
+}
+
 #ostrzezenie {
     display: none;
 }
