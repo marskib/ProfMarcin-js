@@ -45,13 +45,12 @@ div#hintArea {
     text-align: center;
     top: calc(var(--top-ski) + var(--bokkw-ski) + 1px);
     /* left:calc(10% + calc(var(--bokkw-ski) / 3)); */
-    left:  calc(var(--left-ski) - 40px);
+    left: calc(var(--left-ski) - 40px);
     width: calc(var(--bokkw-ski) + 80px);
     height: 50px;
     color: #cdc6c6;
     font-size: 150%;
 }
-
 
 div#bDalej {
     position: absolute;
@@ -66,7 +65,6 @@ div#bDalej {
     transition: 0.3s;
 }
 
-
 div#bDalej p {
     line-height: 16vh;
     text-align: center;
@@ -76,7 +74,7 @@ div#bDalej p {
 div#btnsArea {
     position: absolute;
     right: var(--right-ski);
-    top:   var(--top-ski);
+    top: var(--top-ski);
     width: 35vw;
 }
 
@@ -93,7 +91,6 @@ div#btnsArea {
     font-weight: bold;
 }
 
-
 .klawisz p {
     font-size: 200%;
     line-height: var(--hkl-ski);
@@ -108,7 +105,7 @@ div#homepage {
 
 div#homepage a {
     /* color: gray; */
-    color:#e0ca9d;
+    color: #e0ca9d;
 }
 
 #ostrzezenie {
@@ -120,96 +117,58 @@ div#homepage a {
         font-size: 130%;
         letter-spacing: 1px;
     }
-
     div#bDalej {
         bottom: 0.5vw;
         height: 18vh;
         line-height: 18vh;
     }
-
     div#bDalej p {
         font-size: 300%;
     }
-
     div#homepage {
         font-size: 1.5em;
-        left:90%;
+        left: 90%;
         bottom: 2px;
-    }
-
-    div#homepage a {
-           color:#e0ca9d;
     }
 }
 
 /* Mobilne, pionowo: nie pokazujemy elementow, ostrzezenie i prosba o zmiane orientacji: */
-@media (max-width:800px) and (orientation: portrait) {
 
-    div#pctArea,
-    div#btnsArea,
-    div#hintArea,
-    div#bDalej {
+@media (max-width:800px) and (orientation: portrait) {
+    div#pctArea, div#btnsArea, div#hintArea, div#bDalej {
         display: none;
     }
-
     #ostrzezenie {
         display: block;
         margin-top: 20px;
         text-align: center;
         font-weight: bold;
     }
-
     #ostrzezenie p:nth-child(1) {
         font-size: 110%;
     }
-
     #ostrzezenie p:nth-child(3) {
         font-size: 130%;
     }
-
-   
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ponizej od: https://fvsch.com/styling-buttons/   --- dobre!, ale zaklada, ze mamy do czynienia z BUTTONAMI, nie z div'ami */
+
 /* na razie nie używam... */
 
 .btn {
     /* default for <button>, but useful for <a> */
     display: block;
-
-
     text-align: center;
     text-decoration: none;
-  
     /* create a small space when buttons wrap on 2 lines */
     margin: 5% 0;
-  
     /* invisible border (will be colored on hover/focus) */
     border: solid 1px transparent;
     border-radius: 4px;
-  
     /* size comes from text & padding (no width/height) */
     padding: 1.5em 1em;
-  
     /* make sure colors have enough contrast! */
     color: #ffffff;
     background-color: #9555af;
-  }
-
-
+}

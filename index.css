@@ -17,6 +17,12 @@ body {
     background-color: #fef3dd;
 }
 
+.zajawka {
+    margin-top:5px;
+    text-align: center;
+    font-weight: bold;
+}
+
 #container {
     width: var(--szer-ski);
     height: var(--wys-ski);
@@ -121,6 +127,9 @@ div#homepage a {
         --wys-ski: 85vh;
     }
 
+    .zajawka {
+        display:none;
+    }
     
     #container {
         margin-top: 20px;
