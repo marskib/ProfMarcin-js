@@ -107,7 +107,8 @@ div#homepage {
 }
 
 div#homepage a {
-    color: gray;
+    /* color: gray; */
+    color:#e0ca9d;
 }
 
 #ostrzezenie {
@@ -128,6 +129,16 @@ div#homepage a {
 
     div#bDalej p {
         font-size: 300%;
+    }
+
+    div#homepage {
+        font-size: 1.5em;
+        left:90%;
+        bottom: 2px;
+    }
+
+    div#homepage a {
+           color:#e0ca9d;
     }
 }
 
